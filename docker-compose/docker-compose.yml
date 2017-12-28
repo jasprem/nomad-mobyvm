@@ -42,3 +42,15 @@ hashi-ui:
     NOMAD_ADDR: "http://172.17.0.1:4646"
   ports:
      - "3000:3000"
+
+fabio:
+  image: magiconair/fabio:latest
+  ports:
+    - "9999:9999"
+    - "9998:9998"
+  links:
+    - "consul:consul"
+  volumes:
+    - "./fabio.properties:/etc/fabio/fabio.properties"
+  environment:
+  - SERVICE_9998_TAGS=urlprefix-/fabio
